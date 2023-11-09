@@ -1,0 +1,24 @@
+.bg-card-box {
+  position: relative;
+  background: url(../images/bg-main-desktop.png) no-repeat center center / cover;
+  width: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.card-box {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-left: 115px;
+}
+
+.card-box img:nth-child(2) {
+  margin-left: 130px;
+}
+
+.card-box img {
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, .2);
+  border-radius: 10px;
+}

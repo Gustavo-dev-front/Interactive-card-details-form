@@ -1,0 +1,33 @@
+@charset "UTF-8";
+@import url("./cards.css");
+@import url("./form.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 18px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+:root {
+  --white: hsl(0, 0%, 100%);
+  --light-grayish-violet: hsl(270, 3%, 87%);
+  --dark-grayish-violet: hsl(279, 6%, 55%);
+  --very-dark-violet: hsl(278, 68%, 11%);
+}
+
+body {
+  min-height: 100vh;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  justify-items: center;
+  gap: 200px;
+  max-width: 1400px;
+  margin: auto;
+  height: 100vh;
+  padding: 10px;
+}
