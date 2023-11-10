@@ -14,11 +14,161 @@
   margin-left: 115px;
 }
 
-.card-box img:nth-child(2) {
+.card-box .image {
+  max-width: max-content;
+}
+
+.card-box .image:nth-child(1) {
+  position: relative;
+  order: 1;
+  z-index: 1;
+}
+
+.card-box .image:nth-child(1)::before {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  content: "";
+  display: block;
+  height: 50px;
+  width: 50px;
+  background-color: var(--white);
+  border-radius: 50%;
+  box-shadow: 60px 0 0 -10px #6234E0, 60px 0 0 -9px var(--white);
+}
+
+.front-info {
+  position: absolute;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  color: var(--white);
+  letter-spacing: 2px;
+}
+
+.front-info .card-number {
+  grid-column: 1/-1;
+  font-size: 24px;
+}
+
+.front-info :not(.card-number) {
+  font-size: 12px;
+  color: var(--light-grayish-violet);
+}
+
+.card-box .image:nth-child(2) {
+  position: relative;
   margin-left: 130px;
+  order: 2;
+}
+
+.back-info {
+  position: absolute;
+  right: 11%;
+  top: 44%;
+  color: var(--white);
 }
 
 .card-box img {
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, .2);
   border-radius: 10px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .bg-card-box {
+    padding: 80px 0;
+  }
+
+  .card-box {
+    margin-left: 10px;
+  }
+
+  .card-box .image:nth-child(2) {
+    margin-left: 100px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .bg-card-box {
+    border-radius: 0;
+    background-image: url("../images/bg-main-mobile.png");
+  }
+
+  .card-box {
+    position: relative;
+    margin-left: 0px;
+    align-items: center;
+    width: 100%;
+    padding: 0 15px;
+  }
+
+  .card-box img {
+    max-width: 100%;
+  }
+
+  .card-box .image:nth-child(1) {
+    order: 2;
+    position: absolute;
+    bottom: -140px;
+    align-self: flex-start;
+    max-width: calc(100% - 30px);
+  }
+
+  .card-box .image:nth-child(2) {
+    margin-left: 0;
+    order: 1;
+    align-self: flex-end;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+
+  .card-box .image:nth-child(1)::before {
+    top: 10px;
+    left: 10px;
+    height: 30px;
+    width: 30px;
+    box-shadow: 30px 0 0 -10px #6234E0, 30px 0 0 -9px var(--white);
+  }
+
+  .front-info {
+    padding: 15px 10px;
+  }
+
+  .front-info .card-number {
+    grid-column: 1/-1;
+    font-size: 18px;
+  }
+  
+  .front-info :not(.card-number) {
+    font-size: 8px;
+    color: var(--light-grayish-violet);
+  }
+
+  .back-info {
+    top: 42%;
+  }
+
+  .back-info .cvc {
+    font-size: 16px;
+  }
+
+}
+
+@media only screen and (max-width: 300px)  {
+  .front-info .card-number {
+    grid-column: 1/-1;
+    font-size: 16px;
+  }
+
+  .back-info {
+    top: 40%;
+  }
+
+  .back-info .cvc {
+    font-size: 14px;
+  }
 }

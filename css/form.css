@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-content: start;
-  padding: 0 60px;
+  padding: 0 60px 60px 60px;
   gap: 15px;
   max-width: 600px;
   align-self: center;
@@ -26,6 +26,14 @@
   outline: none;
 }
 
+.form-box input:hover,
+.form-box input:focus {
+  border-color: var(--very-dark-violet);
+}
+
+.form-box input.error {
+  border-color: #B30000;
+}
 
 .input-box:nth-child(1),
 .input-box:nth-child(2) {
@@ -48,7 +56,28 @@
   padding: 10px;
   border-radius: 4px;
   outline: none;
-  border: none;
+  border: 1px solid transparent;
   cursor: pointer;
   color: var(--white);
+}
+
+.form-box button:hover {
+  opacity: 0.8;
+}
+
+.form-box button:focus {
+  border-color: var(--light-grayish-violet);
+}
+
+@media only screen and (max-width: 1000px) {
+  .form-box {
+    padding: 0 15px 60px 15px;
+    align-self: initial;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .input-box {
+    grid-column: 1/-1;
+  }
 }
