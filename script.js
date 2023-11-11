@@ -4,6 +4,11 @@ const card_number_input = document.querySelector("#card-number");
 const card_exp_mm_input = document.querySelector("#card-exp-mm");
 const card_exp_yy_input = document.querySelector("#card-exp-yy");
 const card_cvc_input = document.querySelector("#card-cvc");
+const card_name_output = document.querySelector("span.card-name");
+const card_number_output = document.querySelector("span.card-number");
+const card_exp_mm_output = document.querySelector("span.card-exp-mm");
+const card_exp_yy_output = document.querySelector("span.card-exp-yy");
+const card_cvc_output = document.querySelector("span.card-cvc");
 
 const inputs = [
   {
@@ -11,30 +16,35 @@ const inputs = [
     regex: /^[a-zA-Z]+$/,
     type: "card_name",
     error: false,
+    output: card_name_output,
   },
   {
     element: card_number_input,
     regex: /^[0-9\s]+$/,
     type: "card_number",
     error: false,
+    output: card_number_output,
   },
   {
     element: card_exp_mm_input,
     regex: /^[0-9]+$/,
     type: "card_exp",
     error: false,
+    output: card_exp_mm_output,
   },
   {
     element: card_exp_yy_input,
     regex: /^[0-9]+$/,
     type: "card_exp",
     error: false,
+    output: card_exp_yy_output,
   },
   {
     element: card_cvc_input,
     regex: /^[0-9]+$/,
     type: "card_cvc",
     error: false,
+    output: card_cvc_output,
   },
 ];
 
@@ -114,7 +124,7 @@ function checkValidate() {
   return isValid;
 }
 
-function handleChange() {}
+function handleChange(e) {}
 
 function handleSubmit(e) {
   e.preventDefault();
@@ -123,3 +133,6 @@ function handleSubmit(e) {
 }
 
 form.addEventListener("submit", handleSubmit);
+inputs.forEach((input) => {
+  input.element.addEventListener("keydown", (e) => handleChange);
+});

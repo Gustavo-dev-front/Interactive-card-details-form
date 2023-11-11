@@ -59,6 +59,11 @@
   color: var(--light-grayish-violet);
 }
 
+.front-info .card-exp-mm::after {
+  content: "/";
+  margin-left: 5px;
+}
+
 .card-box .image:nth-child(2) {
   position: relative;
   margin-left: 130px;
@@ -142,7 +147,7 @@
     grid-column: 1/-1;
     font-size: 18px;
   }
-  
+
   .front-info :not(.card-number) {
     font-size: 8px;
     color: var(--light-grayish-violet);
@@ -152,13 +157,13 @@
     top: 42%;
   }
 
-  .back-info .cvc {
+  .back-info .card-cvc {
     font-size: 16px;
   }
 
 }
 
-@media only screen and (max-width: 300px)  {
+@media only screen and (max-width: 300px) {
   .front-info .card-number {
     grid-column: 1/-1;
     font-size: 16px;
@@ -168,7 +173,7 @@
     top: 40%;
   }
 
-  .back-info .cvc {
+  .back-info .card-cvc {
     font-size: 14px;
   }
 }
