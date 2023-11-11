@@ -6,64 +6,111 @@ const card_exp_yy_input = document.querySelector("#card-exp-yy");
 const card_cvc_input = document.querySelector("#card-cvc");
 
 const inputs = [
-  { input: card_name_input, regex: null, type: "card_name" },
-  { input: card_number_input, regex: /^[0-9\s]+$/, type: "card_number" },
-  { input: card_exp_mm_input, regex: /^[0-9]+$/, type: "card_exp" },
-  { input: card_exp_yy_input, regex: /^[0-9]+$/, type: "card_exp" },
-  { input: card_cvc_input, regex: /^[0-9]+$/, type: "card_cvc" },
+  {
+    element: card_name_input,
+    regex: /^[a-zA-Z]+$/,
+    type: "card_name",
+    error: false,
+  },
+  {
+    element: card_number_input,
+    regex: /^[0-9\s]+$/,
+    type: "card_number",
+    error: false,
+  },
+  {
+    element: card_exp_mm_input,
+    regex: /^[0-9]+$/,
+    type: "card_exp",
+    error: false,
+  },
+  {
+    element: card_exp_yy_input,
+    regex: /^[0-9]+$/,
+    type: "card_exp",
+    error: false,
+  },
+  {
+    element: card_cvc_input,
+    regex: /^[0-9]+$/,
+    type: "card_cvc",
+    error: false,
+  },
 ];
 
-function validateInput(input, regex, type) {
+function onChangeValidate(input) {
+  if (!input.error)
+    input.element.addEventListener("change", () => {
+      validateInput(input);
+    });
+  console.log(inputs);
+}
+
+function validateInput(input) {
   let error_msg = "";
-  let span_error = input.nextElementSibling;
+  let span_error = input.element.nextElementSibling;
   while (span_error.tagName !== "SPAN")
     span_error = span_error.nextElementSibling;
 
-  if (!input.value.length) {
-    input.classList.add("error");
+  if (!input.element.value.length) {
+    input.element.classList.add("error");
     error_msg = "Can't be blank";
     span_error.innerText = error_msg;
+    onChangeValidate(input);
+    input.error = true;
     return false;
   }
 
-  if (regex && !regex?.test(input.value)) {
-    input.classList.add("error");
+  if (input.type === "card_name" && !input.regex?.test(input.element.value)) {
+    input.element.classList.add("error");
+    error_msg = "Wrong format, letters only";
+    span_error.innerText = error_msg;
+    onChangeValidate(input);
+    return false;
+  }
+
+  if (input.regex !== "card_name" && !input.regex?.test(input.element.value)) {
+    input.element.classList.add("error");
     error_msg = "Wrong format, numbers only";
     span_error.innerText = error_msg;
+    onChangeValidate(input);
     return false;
   }
 
-  if (input.value.length < 19 && type === "card_number") {
-    input.classList.add("error");
+  if (input.element.value.length < 19 && input.type === "card_number") {
+    input.element.classList.add("error");
     error_msg = "At least 19 digits";
     span_error.innerText = error_msg;
+    onChangeValidate(input);
     return false;
   }
 
-  if (input.value.length < 2 && type === "card_exp") {
-    input.classList.add("error");
+  if (input.element.value.length < 2 && input.type === "card_exp") {
+    input.element.classList.add("error");
     error_msg = "At least 2 digits";
     span_error.innerText = error_msg;
+    onChangeValidate(input);
     return false;
   }
 
-  if (input.value.length < 3 && type === "card_cvc") {
-    input.classList.add("error");
+  if (input.element.value.length < 3 && input.type === "card_cvc") {
+    input.element.classList.add("error");
     error_msg = "At least 3 digits";
     span_error.innerText = error_msg;
+    onChangeValidate(input);
     return false;
   }
 
-  input.classList.remove("error");
+  input.element.classList.remove("error");
   return true;
 }
 
 function checkValidate() {
   let arrayValidate = [];
-  inputs.forEach(({ input, regex, type }) => {
-    arrayValidate.push(validateInput(input, regex, type) === true);
+  inputs.forEach((input) => {
+    arrayValidate.push(validateInput(input) === true);
   });
-  const isValid = arrayValidate.every((item) => item === true);
+  const isValid = arrayValidate.every((input) => input === true);
   return isValid;
 }
 
