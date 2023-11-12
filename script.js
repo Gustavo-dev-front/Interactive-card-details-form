@@ -53,7 +53,6 @@ function onChangeValidate(input) {
     input.element.addEventListener("change", () => {
       validateInput(input);
     });
-  console.log(inputs);
 }
 
 function validateInput(input) {
@@ -124,7 +123,9 @@ function checkValidate() {
   return isValid;
 }
 
-function handleChange(e) {}
+function handleChange(element, output) {
+  console.log(output);
+}
 
 function handleSubmit(e) {
   e.preventDefault();
@@ -133,6 +134,8 @@ function handleSubmit(e) {
 }
 
 form.addEventListener("submit", handleSubmit);
-inputs.forEach((input) => {
-  input.element.addEventListener("keydown", (e) => handleChange);
+
+inputs.forEach(input => {
+  const {element, output } = input;
+  element.addEventListener("keydown", () => handleChange(element, output));
 });
