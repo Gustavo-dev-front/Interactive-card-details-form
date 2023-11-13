@@ -1,0 +1,31 @@
+.active.completed {
+  display: grid;
+  opacity: 1;
+}
+
+.completed {
+  align-self: center;
+  display: grid;
+  gap: 15px;
+  justify-items: center;
+  width: 50%;
+  display: none;
+}
+
+.completed h1 {
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.completed p {
+  color: var(--dark-grayish-violet);
+  font-size: 0.8rem;
+}
+
+.completed button {
+  display: block;
+  width: 100%;
+  margin-top: 30px;
+}
+
+

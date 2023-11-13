@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url("./cards.css");
 @import url("./form.css");
+@import url("./completed.css");
 
 * {
   margin: 0;
@@ -33,13 +34,48 @@ main {
   padding: 10px;
 }
 
-@media only screen and (max-width: 1200px) { 
+button {
+  grid-column: 1/-1;
+  background-color: var(--very-dark-violet);
+  padding: 10px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  color: var(--white);
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:focus {
+  border-color: var(--light-grayish-violet);
+}
+
+.to-left {
+  animation: to-left ease .3s;
+}
+
+@keyframes to-left {
+  from {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+
+  to {
+    transform: initial;
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
   main {
     gap: 50px;
   }
 }
 
-@media only screen and (max-width: 1000px) { 
+@media only screen and (max-width: 1000px) {
   main {
     grid-template-columns: 1fr;
     padding: 0;

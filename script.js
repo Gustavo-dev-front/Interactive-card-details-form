@@ -102,6 +102,15 @@ function validateInput(input) {
     return false;
   }
 
+  if (input.element.id === "card-exp-mm" && (+input.element.value === 0 || +input.element.value > 12)) {
+    input.element.classList.add("error");
+    console.log(input.element.id, input.element.id === "card-exp-mm");
+    error_msg = "Invalid, 1 to 12";
+    span_error.innerText = error_msg;
+    onChangeValidate(input);
+    return false;
+  }
+
   if (input.element.value.length < 3 && input.type === "card_cvc") {
     input.element.classList.add("error");
     error_msg = "At least 3 digits";
@@ -126,9 +135,13 @@ function checkValidate() {
 function handleChange(input, output) {
   const { type } = input;
   if (type === "card_name") {
-    output.innerText = input.element.value.toUpperCase();
-    return;
+    input.element.value = input.element.value.toUpperCase();
+  } else if (type === "card_number") {
+    let unmaskedValue = input.element.value.replace(/\s/g, "");
+    let maskedValue = unmaskedValue.replace(/\B(?=(\d{4})+(?!\d))/g, " ");
+    input.element.value = maskedValue;
   }
+  output.innerText = input.element.value;
 }
 
 function handleSubmit(e) {

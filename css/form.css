@@ -14,8 +14,6 @@
   font-size: 14px !important;
 }
 
-
-
 .input-box {
   position: relative;
 }
@@ -70,26 +68,6 @@
 .form-box input.error~span.error {
   opacity: 1;
   display: block;
-}
-
-
-.form-box button {
-  grid-column: 1/-1;
-  background-color: var(--very-dark-violet);
-  padding: 10px;
-  border-radius: 4px;
-  outline: none;
-  border: 1px solid transparent;
-  cursor: pointer;
-  color: var(--white);
-}
-
-.form-box button:hover {
-  opacity: 0.8;
-}
-
-.form-box button:focus {
-  border-color: var(--light-grayish-violet);
 }
 
 @media only screen and (max-width: 1000px) {
