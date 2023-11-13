@@ -123,8 +123,12 @@ function checkValidate() {
   return isValid;
 }
 
-function handleChange(element, output) {
-  console.log(output);
+function handleChange(input, output) {
+  const { type } = input;
+  if (type === "card_name") {
+    output.innerText = input.element.value.toUpperCase();
+    return;
+  }
 }
 
 function handleSubmit(e) {
@@ -135,7 +139,7 @@ function handleSubmit(e) {
 
 form.addEventListener("submit", handleSubmit);
 
-inputs.forEach(input => {
-  const {element, output } = input;
-  element.addEventListener("keydown", () => handleChange(element, output));
+inputs.forEach((input) => {
+  const { output } = input;
+  input.element.addEventListener("keyup", () => handleChange(input, output));
 });
