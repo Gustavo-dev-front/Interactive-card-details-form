@@ -9,6 +9,8 @@ const card_number_output = document.querySelector("span.card-number");
 const card_exp_mm_output = document.querySelector("span.card-exp-mm");
 const card_exp_yy_output = document.querySelector("span.card-exp-yy");
 const card_cvc_output = document.querySelector("span.card-cvc");
+const completed = document.querySelector(".completed");
+const btn_continue = completed.querySelector("button");
 
 const inputs = [
   {
@@ -102,7 +104,10 @@ function validateInput(input) {
     return false;
   }
 
-  if (input.element.id === "card-exp-mm" && (+input.element.value === 0 || +input.element.value > 12)) {
+  if (
+    input.element.id === "card-exp-mm" &&
+    (+input.element.value === 0 || +input.element.value > 12)
+  ) {
     input.element.classList.add("error");
     console.log(input.element.id, input.element.id === "card-exp-mm");
     error_msg = "Invalid, 1 to 12";
@@ -147,7 +152,10 @@ function handleChange(input, output) {
 function handleSubmit(e) {
   e.preventDefault();
   const isValid = checkValidate();
-  console.log(isValid);
+  if (isValid) {
+    form.classList.remove("active");
+    completed.classList.add("active");
+  }
 }
 
 form.addEventListener("submit", handleSubmit);
@@ -155,4 +163,8 @@ form.addEventListener("submit", handleSubmit);
 inputs.forEach((input) => {
   const { output } = input;
   input.element.addEventListener("keyup", () => handleChange(input, output));
+});
+
+btn_continue.addEventListener("click", () => {
+  location.reload();
 });
