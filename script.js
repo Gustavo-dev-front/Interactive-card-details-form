@@ -13,7 +13,7 @@ const card_cvc_output = document.querySelector("span.card-cvc");
 const inputs = [
   {
     element: card_name_input,
-    regex: /^[a-zA-Z]+$/,
+    regex: /^[a-zA-Z]+(?:[ ]?[a-zA-Z]+)*$/,
     type: "card_name",
     error: false,
     output: card_name_output,
